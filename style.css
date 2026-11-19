@@ -1,0 +1,302 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background: #fffdf8;
+    color: #45405b;
+}
+
+.navbar {
+    background: white;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: 900;
+    color: #7865c8;
+    text-decoration: none;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+nav a {
+    color: #625d75;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+nav a:hover {
+    color: #f29a78;
+}
+
+.hero {
+    min-height: 430px;
+    padding: 65px 10%;
+    background: linear-gradient(120deg, #d9f3ff, #fce4f2, #fff1c9);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.hero-content {
+    max-width: 560px;
+}
+
+.welcome {
+    background: white;
+    padding: 10px 18px;
+    border-radius: 30px;
+    color: #8b6acb;
+    font-weight: 800;
+}
+
+.hero h1 {
+    font-size: clamp(36px, 6vw, 58px);
+    line-height: 1.15;
+    margin: 25px 0 15px;
+    color: #6554a5;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.hero-picture {
+    font-size: clamp(65px, 10vw, 110px);
+    background: rgba(255,255,255,0.55);
+    padding: 35px;
+    border-radius: 45%;
+}
+
+.main-button,
+.game-button {
+    display: inline-block;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 25px;
+    background: #8c78d6;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.main-button:hover,
+.game-button:hover {
+    background: #705db9;
+    transform: translateY(-3px);
+}
+
+.section {
+    padding: 65px 8%;
+    text-align: center;
+}
+
+.section h2 {
+    font-size: 32px;
+    color: #6758a7;
+}
+
+.subtitle {
+    margin: 10px 0 35px;
+    color: #888398;
+}
+
+.coloured-section {
+    background: #f3efff;
+}
+
+.category-grid,
+.word-grid,
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 22px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.category-card,
+.word-card,
+.game-card {
+    background: white;
+    border-radius: 25px;
+    padding: 25px;
+    text-decoration: none;
+    color: #514b69;
+    box-shadow: 0 6px 18px rgba(80,65,120,0.08);
+    transition: 0.2s;
+}
+
+.category-card:hover,
+.word-card:hover,
+.game-card:hover {
+    transform: translateY(-6px);
+}
+
+.category-card span {
+    font-size: 60px;
+}
+
+.category-card h3,
+.word-card h3,
+.game-card h3 {
+    margin: 12px 0 5px;
+    color: #6d5ab5;
+}
+
+.animal-card {
+    background: #fff0e8;
+}
+
+.fruit-card {
+    background: #fff1f4;
+}
+
+.object-card {
+    background: #e9f5ff;
+}
+
+.word-card .emoji {
+    font-size: 55px;
+}
+
+.word-card .meaning {
+    color: #9991a8;
+    margin-top: 5px;
+}
+
+.word-card .sentence {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #746e86;
+}
+
+.game-grid {
+    margin-bottom: 30px;
+}
+
+.game-icon {
+    font-size: 55px;
+}
+
+.game-card p {
+    margin: 10px 0 20px;
+    line-height: 1.5;
+}
+
+.game-area {
+    max-width: 800px;
+    margin: 20px auto 0;
+    background: #fff8df;
+    border-radius: 25px;
+    padding: 30px;
+    min-height: 120px;
+}
+
+.match-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.match-item {
+    border: 2px solid #e4dafa;
+    background: white;
+    padding: 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.match-item.selected {
+    border-color: #8c78d6;
+    background: #eee9ff;
+}
+
+.match-item.matched {
+    background: #dff7e7;
+    border-color: #8bc99b;
+    cursor: default;
+}
+
+.quiz-option {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 10px auto;
+    padding: 13px;
+    border: 2px solid #e4dafa;
+    border-radius: 15px;
+    background: white;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.quiz-option:hover {
+    background: #eee9ff;
+}
+
+footer {
+    text-align: center;
+    background: #7463b5;
+    color: white;
+    padding: 28px;
+    line-height: 1.8;
+}
+
+@media (max-width: 650px) {
+    .navbar {
+        justify-content: center;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .hero {
+        text-align: center;
+        justify-content: center;
+    }
+
+    .hero-picture {
+        font-size: 65px;
+    }
+
+    .section {
+        padding: 50px 5%;
+    }
+}

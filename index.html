@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Word Adventure</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <a class="logo" href="#home">🌈 Little Word Adventure</a>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#animals">Animals</a>
+            <a href="#fruits">Fruits</a>
+            <a href="#objects">Daily Objects</a>
+            <a href="#games">Games</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- HOME -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <span class="welcome">✨ Welcome, Little Learners! ✨</span>
+                <h1>Let's Learn English<br>and Have Fun!</h1>
+                <p>Explore new words, play fun games and enjoy learning English!</p>
+                <a href="#categories" class="main-button">Start Learning 🚀</a>
+            </div>
+
+            <div class="hero-picture">🐻 🐰 🐱</div>
+        </section>
+
+        <!-- CATEGORIES -->
+        <section id="categories" class="section">
+            <h2>🌟 Choose What to Learn</h2>
+            <p class="subtitle">Pick your favourite learning topic!</p>
+
+            <div class="category-grid">
+                <a href="#animals" class="category-card animal-card">
+                    <span>🐻</span>
+                    <h3>Animals</h3>
+                    <p>Learn animal names</p>
+                </a>
+
+                <a href="#fruits" class="category-card fruit-card">
+                    <span>🍎</span>
+                    <h3>Fruits</h3>
+                    <p>Discover yummy fruits</p>
+                </a>
+
+                <a href="#objects" class="category-card object-card">
+                    <span>🎒</span>
+                    <h3>Daily Objects</h3>
+                    <p>Learn everyday words</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- ANIMALS -->
+        <section id="animals" class="section coloured-section">
+            <h2>🐾 Animal World</h2>
+            <p class="subtitle">Meet our lovely animal friends!</p>
+            <div id="animal-list" class="word-grid"></div>
+        </section>
+
+        <!-- FRUITS -->
+        <section id="fruits" class="section">
+            <h2>🍓 Fruit Garden</h2>
+            <p class="subtitle">Learn the names of delicious fruits!</p>
+            <div id="fruit-list" class="word-grid"></div>
+        </section>
+
+        <!-- DAILY OBJECTS -->
+        <section id="objects" class="section coloured-section">
+            <h2>🎒 Everyday Things</h2>
+            <p class="subtitle">Discover things around you!</p>
+            <div id="object-list" class="word-grid"></div>
+        </section>
+
+        <!-- GAMES -->
+        <section id="games" class="section">
+            <h2>🎮 Let's Play!</h2>
+            <p class="subtitle">Learn English through fun activities!</p>
+
+            <div class="game-grid">
+                <div class="game-card">
+                    <div class="game-icon">🧩</div>
+                    <h3>Match the Animals</h3>
+                    <p>Match each animal picture with its English name.</p>
+                    <button class="game-button" onclick="startMatching()">
+                        Play Matching
+                    </button>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-icon">❓</div>
+                    <h3>Animal Quiz</h3>
+                    <p>Answer simple questions about animals.</p>
+                    <button class="game-button" onclick="startQuiz()">
+                        Start Quiz
+                    </button>
+                </div>
+            </div>
+
+            <div id="game-area" class="game-area">
+                <p>Choose a game to start your adventure! 🌈</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>🌈 Little Word Adventure</p>
+        <p>Learning English is fun!</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
