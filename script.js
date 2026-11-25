@@ -12,6 +12,41 @@ const animals = [
     { name: "Fish", meaning: "鱼", emoji: "🐟", sentence: "The fish swims." }
 ];
 
+
+// Play real animal sounds
+let currentSound = null;
+
+function playAnimalSound(animalName) {
+
+    if (currentSound) {
+        currentSound.pause();
+        currentSound.currentTime = 0;
+    }
+
+    currentSound = new Audio(
+        `sounds/${animalName.toLowerCase()}.mp3`
+    );
+
+    currentSound.play().catch(error => {
+        console.log("Audio error:", error);
+    });
+}
+
+// Pronounce English words
+function speakWord(word) {
+
+    window.speechSynthesis.cancel();
+
+    const speech = new SpeechSynthesisUtterance(word);
+
+    speech.lang = "en-US";
+    speech.rate = 0.85;
+    speech.pitch = 1;
+
+    window.speechSynthesis.speak(speech);
+}
+
+
 const fruits = [
     { name: "Apple", meaning: "苹果", emoji: "🍎", sentence: "I like apples." },
     { name: "Banana", meaning: "香蕉", emoji: "🍌", sentence: "The banana is yellow." },
@@ -30,23 +65,52 @@ const objects = [
     { name: "Ball", meaning: "球", emoji: "⚽", sentence: "I have a ball." }
 ];
 
+
+
 // Display vocabulary cards
 function displayWords(items, containerId) {
+
     const container = document.getElementById(containerId);
 
     container.innerHTML = items.map(item => `
         <div class="word-card">
+
             <div class="emoji">${item.emoji}</div>
+
             <h3>${item.name}</h3>
+
             <p class="meaning">${item.meaning}</p>
+
             <p class="sentence">${item.sentence}</p>
+
+            ${containerId === "animal-list" ? `
+                <div class="sound-buttons">
+
+                    ${item.name !== "Fish" ? `
+                        <button class="sound-button"
+                            onclick="playAnimalSound('${item.name}')">
+                            🔊 Hear Animal Sound
+                        </button>
+                    ` : ""}
+
+                    <button class="word-button"
+                        onclick="speakWord('${item.name}')">
+                        🗣️ Say the Word
+                    </button>
+
+                </div>
+            ` : ""}
+
         </div>
     `).join("");
 }
 
+
 displayWords(animals, "animal-list");
 displayWords(fruits, "fruit-list");
 displayWords(objects, "object-list");
+
+
 
 // Matching Game
 let selectedAnimal = null;
@@ -144,6 +208,143 @@ function selectMatch(button) {
             "Good try! Let's try again! 💪";
     }
 }
+
+/* Sound Matching Game */
+
+const soundAnimals = animals.filter(
+    animal => animal.name !== "Fish"
+);
+
+let soundQuestion = 0;
+let soundScore = 0;
+let currentSoundAnswer = null;
+let soundOptions = [];
+
+function startSoundMatching() {
+
+    soundQuestion = 0;
+    soundScore = 0;
+
+    showSoundQuestion();
+}
+
+function showSoundQuestion() {
+
+    const gameArea = document.getElementById("game-area");
+
+    if (soundQuestion >= 5) {
+
+        gameArea.innerHTML = `
+            <h3>🎉 Sound Matching Completed!</h3>
+
+            <h2>
+                You got ${soundScore} out of 5!
+            </h2>
+
+            <p>
+                ${soundScore === 5
+                    ? "Amazing! You know all the animal sounds! 🌟"
+                    : "Well done! Keep practising! 💖"}
+            </p>
+
+            <button class="game-button"
+                onclick="startSoundMatching()">
+                Play Again 🔊
+            </button>
+        `;
+
+        return;
+    }
+
+    const correctAnimal =
+        soundAnimals[Math.floor(Math.random() * soundAnimals.length)];
+
+    currentSoundAnswer = correctAnimal.name;
+
+    const wrongAnimals = soundAnimals
+        .filter(animal => animal.name !== correctAnimal.name)
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 2);
+
+    soundOptions = [correctAnimal, ...wrongAnimals]
+        .sort(() => Math.random() - 0.5);
+
+    gameArea.innerHTML = `
+        <h3>🔊 Sound Matching</h3>
+
+        <p>Question ${soundQuestion + 1} of 5</p>
+
+        <h2>🐾 Guess the Animal!</h2>
+
+        <button class="game-button"
+            onclick="playSoundQuestion()">
+            🔊 Play Animal Sound
+        </button>
+
+        <div class="sound-match-options">
+
+            ${soundOptions.map(animal => `
+                <button class="quiz-option"
+                    onclick="answerSoundQuestion('${animal.name}')">
+
+                    ${animal.emoji}
+                    ${animal.name}
+
+                </button>
+            `).join("")}
+
+        </div>
+
+        <p id="sound-feedback"></p>
+    `;
+
+    playSoundQuestion();
+}
+
+function playSoundQuestion() {
+    playAnimalSound(currentSoundAnswer);
+}
+
+function answerSoundQuestion(answer) {
+
+    const buttons = document.querySelectorAll(
+        ".sound-match-options .quiz-option"
+    );
+
+    buttons.forEach(button => button.disabled = true);
+
+    const feedback = document.getElementById("sound-feedback");
+
+    if (answer === currentSoundAnswer) {
+
+        soundScore++;
+
+        feedback.textContent =
+            "Correct! Great listening! 🎉";
+
+    } else {
+
+        feedback.textContent =
+            `Good try! It was ${currentSoundAnswer}! 💖`;
+    }
+
+    const nextButton = document.createElement("button");
+
+    nextButton.className = "game-button";
+    nextButton.textContent = "Next Question ➜";
+
+    nextButton.style.marginTop = "15px";
+
+    nextButton.onclick = () => {
+
+        soundQuestion++;
+
+        showSoundQuestion();
+    };
+
+    feedback.after(nextButton);
+}
+
 
 // Animal Quiz
 const questions = [
