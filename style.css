@@ -300,3 +300,102 @@ footer {
         padding: 50px 5%;
     }
 }
+
+/* Animal Sound Button */
+.sound-button {
+    background: #8BC9A8;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: 0.3s;
+}
+
+.sound-button:hover {
+    background: #65AD87;
+    transform: scale(1.08);
+}
+
+.sound-button:active {
+    transform: scale(0.95);
+}
+
+/* Sound Buttons */
+.sound-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.sound-button,
+.word-button {
+    border: none;
+    padding: 10px;
+    border-radius: 25px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    color: white;
+}
+
+.sound-button {
+    background: #8BC9A8;
+}
+
+.sound-button:hover {
+    background: #65AD87;
+    transform: scale(1.05);
+}
+
+.word-button {
+    background: #A99AE8;
+}
+
+.word-button:hover {
+    background: #8D7AD1;
+    transform: scale(1.05);
+}
+
+.sound-button:active,
+.word-button:active {
+    transform: scale(0.95);
+}
+
+/* Sound Matching Game */
+
+.sound-match-options {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.sound-match-options .quiz-option {
+    min-width: 130px;
+    padding: 18px 22px;
+    border-radius: 20px;
+    background: #F0EBFF;
+    color: #6655A5;
+    border: 2px solid #D8CCFF;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.sound-match-options .quiz-option:hover:not(:disabled) {
+    background: #DCD0FF;
+    transform: translateY(-3px);
+}
+
+.sound-match-options .quiz-option:disabled {
+    opacity: 0.65;
+    cursor: default;
+}
